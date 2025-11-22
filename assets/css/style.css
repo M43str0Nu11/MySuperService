@@ -1,0 +1,43 @@
+/* Основные сбросы и переменные */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    background: #090B0D;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+}
+
+/* Шапка сайта (header) */
+.site-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* background-color: #000000b3; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+        padding: 26px 40px;
+        min-height: 110px;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.logo-title {
+    font-weight: 800;
+    font-size: 2.2rem;
+    font-family: Arial, sans-serif;
+    color: #5F94D9; /* главный акцент */
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    display: inline-block;
+    text-shadow: 6px 6px 6px rgba(56,87,115,0.85), 0 0 12px rgba(95,148,217,0.85);
+}
+
+/* Отступ сверху, чтобы центрированный контент не оказался под шапкой */
+main { padding-top: 140px; }
