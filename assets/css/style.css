@@ -5,9 +5,6 @@ body {
     background: #090B0D;
     margin: 0;
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-family: Arial, sans-serif;
     color: #ffffff;
 }
@@ -18,26 +15,195 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    /* background-color: #000000b3; */
     display: flex;
     align-items: center;
     justify-content: space-between;
-        padding: 26px 40px;
-        min-height: 110px;
+    padding: 26px 40px;
+    min-height: 110px;
     z-index: 10;
     pointer-events: auto;
 }
 
 .logo-title {
     font-weight: 800;
-    font-size: 2.2rem;
+    font-size: 3rem; /* увеличено */
     font-family: Arial, sans-serif;
     color: #5F94D9; /* главный акцент */
     text-transform: uppercase;
-    letter-spacing: 2.5px;
+    letter-spacing: 3px;
     display: inline-block;
-    text-shadow: 6px 6px 6px rgba(56,87,115,0.85), 0 0 12px rgba(95,148,217,0.85);
+    line-height: 1.05;
+    text-shadow: 7px 7px 10px rgba(56,87,115,0.85), 0 0 18px rgba(95,148,217,0.9);
 }
 
 /* Отступ сверху, чтобы центрированный контент не оказался под шапкой */
 main { padding-top: 140px; }
+
+/* Раздел погоды */
+.weather-section {
+    padding: 40px 40px 60px 70px; /* сверху/справа/снизу/слева */
+    max-width: 900px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+  gap: 32px;
+  position: relative;
+}
+
+.section-title {
+    color: #5F94D9;
+    font-size: 3.2rem;
+    margin: 0;
+    font-weight: 800;
+    white-space: nowrap;
+    position: relative;
+    line-height: 1.1;
+    text-shadow: 3px 3px 8px rgba(56,87,115,0.8), 0 0 14px rgba(95,148,217,0.55);
+}
+
+/* Центрированная версия заголовка между двумя волнами */
+/* Новый объединённый фон волн за словом */
+.section-header--merged { position: relative; justify-content: center; }
+.waves-merged { position:absolute; top:50%; left:0; right:0; transform:translateY(-50%); height:64px; display:flex; pointer-events:none; z-index:1; }
+.waves-merged .waves-svg { flex:1; height:100%; display:block; }
+.waves-svg--left { transform:scaleX(-1); }
+.waves-svg--right { transform:scaleX(1); }
+/* Дополнительная маска для жёсткого гашения краёв (поддержка современных браузеров) */
+.waves-merged {
+  mask-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%),
+               linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%),
+                      linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+  mask-composite: intersect;
+  -webkit-mask-composite: destination-in;
+}
+/* Полупрозрачное затемнение краёв (слева/справа/снизу) для плавного исчезновения волн */
+.waves-merged::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,
+      rgba(9,11,13,0.95) 0%,
+      rgba(9,11,13,0.80) 4%,
+      rgba(9,11,13,0.55) 9%,
+      rgba(9,11,13,0.30) 14%,
+      rgba(9,11,13,0.18) 20%,
+      rgba(9,11,13,0.06) 34%,
+      rgba(9,11,13,0.00) 44%,
+      rgba(9,11,13,0.00) 56%,
+      rgba(9,11,13,0.06) 66%,
+      rgba(9,11,13,0.18) 80%,
+      rgba(9,11,13,0.30) 86%,
+      rgba(9,11,13,0.55) 91%,
+      rgba(9,11,13,0.80) 96%,
+      rgba(9,11,13,0.95) 100%),
+    linear-gradient(to bottom,
+      rgba(9,11,13,0.00) 0%,
+      rgba(9,11,13,0.30) 68%,
+      rgba(9,11,13,0.70) 86%,
+      rgba(9,11,13,0.92) 100%);
+  z-index:2;
+}
+/* Разные скорости для лёгкой интерференции */
+.waves-svg--left .parallax-waves use { animation-duration:24s; }
+.waves-svg--right .parallax-waves use { animation-duration:20s; }
+/* Затемняющий ореол за словом для читаемости */
+.section-header--merged::after { content:""; position:absolute; top:50%; left:50%; width:480px; height:90px; transform:translate(-50%,-50%); background:radial-gradient(circle at 50% 50%, rgba(9,11,13,0.72) 0%, rgba(9,11,13,0.55) 34%, rgba(9,11,13,0.32) 58%, rgba(9,11,13,0) 82%); filter:blur(6px); z-index:3; pointer-events:none; }
+.section-title--overlay { position:relative; z-index:5; padding:4px 26px; text-shadow:0 0 14px rgba(95,148,217,0.65), 3px 3px 8px rgba(56,87,115,0.85); }
+
+.weather-container {
+    max-width: 380px;
+    background: radial-gradient(circle at 30% 20%, rgba(95,148,217,0.25), rgba(9,11,13,0.8) 70%), rgba(95,148,217,0.08);
+    border: 2px solid #5F94D9;
+    border-radius: 18px;
+    padding: 28px 28px 24px;
+    box-shadow: 0 8px 28px rgba(95,148,217,0.35), 0 0 12px rgba(95,148,217,0.25) inset;
+    backdrop-filter: blur(8px);
+}
+
+/* Ряд контейнеров */
+.weather-grid {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* Модификаторы для отдельных контейнеров */
+.weather-container--morning {
+  background: radial-gradient(circle at 30% 20%, rgba(95,148,217,0.25), rgba(9,11,13,0.8) 70%), 
+              linear-gradient(135deg,#385773 0%,#5F94D9 90%);
+}
+
+.weather-container--day {
+  background: radial-gradient(circle at 30% 20%, rgba(95,148,217,0.25), rgba(9,11,13,0.8) 70%), 
+              linear-gradient(135deg,#385773 0%,#5F94D9 90%);
+}
+
+.weather-container--evening {
+  background: radial-gradient(circle at 30% 20%, rgba(95,148,217,0.25), rgba(9,11,13,0.85) 70%), 
+              linear-gradient(135deg,#385773 0%,#5F94D9 90%);
+}
+
+/* Заголовок периода */
+.period-label {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #F2B366;
+  margin: 0 0 .6rem;
+  letter-spacing: .5px;
+  text-align: center;
+}
+
+/* Температура */
+.period-temp {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
+  text-shadow: 3px 3px 6px rgba(56,87,115,0.6), 0 0 10px rgba(95,148,217,0.5);
+  text-align: center;
+}
+
+/* hover */
+.weather-card:hover {
+  box-shadow: 0 6px 16px -4px #385773, 0 0 0 1px #5F94D9;
+}
+
+/* адаптив */
+@media (max-width: 520px) {
+  .weather-cards { flex-direction: column; }
+  .weather-card { min-width: 100%; }
+}
+@media (max-width: 680px) {
+  .weather-grid { gap: 16px; }
+  .weather-container { flex: 1 1 calc(50% - 16px); }
+}
+@media (max-width: 480px) {
+  .weather-container { flex: 1 1 100%; }
+}
+
+
+/* ==== SVG Parallax Waves (вместо JS + span) ==== */
+/* Удалены старые waves-wrapper слои, используется объединённый контейнер */
+
+/* Дополнительно маска для ещё более мягких краёв (современные браузеры) */
+/* Маска подгоняем так, чтобы прозрачная область была прямо у слова */
+/* Старые маски отдельных линий удалены */
+
+.waves-svg { width: 100%; height: 100%; display: block; }
+
+.parallax-waves use { animation: waveShift 22s cubic-bezier(.55,.5,.45,.5) infinite; }
+.parallax-waves use:nth-child(1) { animation-delay: -2s; animation-duration: 8s; }
+.parallax-waves use:nth-child(2) { animation-delay: -4s; animation-duration: 13s; }
+.parallax-waves use:nth-child(3) { animation-delay: -6s; animation-duration: 18s; }
+.parallax-waves use:nth-child(4) { animation-delay: -8s; animation-duration: 28s; }
+
+@keyframes waveShift {
+  0% { transform: translate3d(-90px,0,0); }
+  100% { transform: translate3d(85px,0,0); }
+}

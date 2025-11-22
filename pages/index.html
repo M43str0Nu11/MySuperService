@@ -18,8 +18,51 @@
     </div>
   </header>
   <main>
-    <!-- Центрированный заголовок был удалён по запросу пользователя. -->
+    <section class="weather-section" aria-labelledby="weather-title">
+      <div class="section-header section-header--merged">
+        <div class="waves-merged" aria-hidden="true">
+          <svg class="waves-svg waves-svg--left" viewBox="0 24 150 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <path id="wave-path-left" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z" />
+            </defs>
+            <g class="parallax-waves">
+              <use href="#wave-path-left" x="48" y="0" fill="rgba(95,148,217,0.45)" />
+              <use href="#wave-path-left" x="48" y="3" fill="rgba(90,144,191,0.38)" />
+              <use href="#wave-path-left" x="48" y="5" fill="rgba(56,87,115,0.32)" />
+              <use href="#wave-path-left" x="48" y="7" fill="rgba(9,11,13,0.78)" />
+            </g>
+          </svg>
+          <svg class="waves-svg waves-svg--right" viewBox="0 24 150 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <path id="wave-path-right" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z" />
+            </defs>
+            <g class="parallax-waves">
+              <use href="#wave-path-right" x="48" y="0" fill="rgba(95,148,217,0.55)" />
+              <use href="#wave-path-right" x="48" y="3" fill="rgba(90,144,191,0.45)" />
+              <use href="#wave-path-right" x="48" y="5" fill="rgba(56,87,115,0.40)" />
+              <use href="#wave-path-right" x="48" y="7" fill="rgba(9,11,13,0.85)" />
+            </g>
+          </svg>
+        </div>
+        <h2 id="weather-title" class="section-title section-title--overlay">Погода</h2>
+      </div>
+      <div class="weather-grid">
+        <div class="weather-container weather-container--morning">
+          <div class="period-label">Утро</div>
+          <div class="period-temp">+12°C</div>
+        </div>
+        <div class="weather-container weather-container--day">
+          <div class="period-label">День</div>
+          <div class="period-temp">+18°C</div>
+        </div>
+        <div class="weather-container weather-container--evening">
+          <div class="period-label">Вечер</div>
+          <div class="period-temp">+14°C</div>
+        </div>
+      </div>
+    </section>
   </main>
+  <!-- SVG волна без JS -->
 </body>
 </html>
 
