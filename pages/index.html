@@ -3,73 +3,73 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pupa &amp; Lupa</title>
+  <title>MySuperService</title>
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-  <header class="site-header" role="banner">
-    <div class="header-left">
-      <div class="logo" aria-hidden="true">
-        <span class="logo-title">Pupa &amp; Lupa</span>
-      </div>
-    </div>
-    <div class="header-right" aria-hidden="true">
-      <!-- навигация / действия в шапке (заполнить позже) -->
-    </div>
+  <div class="update-info">
+    <span id="last-update">Обновлено: сегодня в 7:00</span>
+    <button id="refresh-btn" class="refresh-btn">Обновить</button>
+  </div>
+  <div id="notification" class="notification"></div>
+  <header class="site-header">
+    <span class="header-title">Шапка</span>
   </header>
   <main>
-    <section class="weather-section" aria-labelledby="weather-title">
-      <div class="section-header section-header--merged">
-        <div class="waves-merged" aria-hidden="true">
-          <svg class="waves-svg waves-svg--left" viewBox="0 24 150 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <path id="wave-path-left" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z" />
-            </defs>
-            <g class="parallax-waves">
-              <use href="#wave-path-left" x="48" y="0" fill="rgba(95,148,217,0.45)" />
-              <use href="#wave-path-left" x="48" y="3" fill="rgba(90,144,191,0.38)" />
-              <use href="#wave-path-left" x="48" y="5" fill="rgba(56,87,115,0.32)" />
-              <use href="#wave-path-left" x="48" y="7" fill="rgba(9,11,13,0.78)" />
-            </g>
-          </svg>
-          <svg class="waves-svg waves-svg--right" viewBox="0 24 150 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <path id="wave-path-right" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z" />
-            </defs>
-            <g class="parallax-waves">
-              <use href="#wave-path-right" x="48" y="0" fill="rgba(95,148,217,0.55)" />
-              <use href="#wave-path-right" x="48" y="3" fill="rgba(90,144,191,0.45)" />
-              <use href="#wave-path-right" x="48" y="5" fill="rgba(56,87,115,0.40)" />
-              <use href="#wave-path-right" x="48" y="7" fill="rgba(9,11,13,0.85)" />
-            </g>
-          </svg>
-        </div>
-        <h2 id="weather-title" class="section-title section-title--overlay">Погода</h2>
-      </div>
+    <section class="weather-section">
+      <h2 id="forecast-title">Прогноз на <span id="forecast-date"></span></h2>
       <div class="weather-grid">
-        <div class="weather-container weather-container--morning">
+        <div class="weather-container">
           <div class="period-label">Утро</div>
-          <div class="period-temp">+12°C</div>
+          <div class="period-temp">+12°</div>
         </div>
-        <div class="weather-container weather-container--day">
+        <div class="weather-container">
           <div class="period-label">День</div>
-          <div class="period-temp">+18°C</div>
+          <div class="period-temp">+18°</div>
         </div>
-        <div class="weather-container weather-container--evening">
+        <div class="weather-container">
           <div class="period-label">Вечер</div>
-          <div class="period-temp">+14°C</div>
+          <div class="period-temp">+14°</div>
         </div>
       </div>
     </section>
+
+    <section class="weather-section">
+      <h2>Данные по источникам</h2>
+      <table class="weather-table">
+        <thead>
+          <tr>
+            <th>Время</th>
+            <th>Open-Meteo</th>
+            <th>7Timer!</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Утро (8:00)</td>
+            <td>+12°</td>
+            <td>+11°</td>
+            <td>+13°</td>
+          </tr>
+          <tr>
+            <td>День (14:00)</td>
+            <td>+18°</td>
+            <td>+19°</td>
+            <td>+17°</td>
+          </tr>
+          <tr>
+            <td>Вечер (20:00)</td>
+            <td>+14°</td>
+            <td>+15°</td>
+            <td>+13°</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
   </main>
-  <!-- SVG волна без JS -->
+  <footer class="site-footer">
+    <span class="footer-title">Подвал</span>
+  </footer>
+  <script src="../assets/js/weather.js"></script>
 </body>
 </html>
-
-<!--  
-#5F94D9 - главный акцент
-#090B0D - фон
-#5A90BF - для ссылок
-#385773 - тень акцента
-#F2B366 - Контрастный акценту
--->

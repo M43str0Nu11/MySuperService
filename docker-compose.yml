@@ -1,0 +1,63 @@
+version: '3.8'
+
+name: weather-service
+
+services:
+  web:
+    container_name: mysuperservice-web
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./pages:/usr/share/nginx/html/pages
+      - ./assets:/usr/share/nginx/html/assets
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - db
+    networks:
+      - weather-network
+
+  db:
+    container_name: mysuperservice-db
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: weather_db
+      POSTGRES_USER: weather_user
+      POSTGRES_PASSWORD: weather_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - weather-network
+
+  parser:
+    container_name: mysuperservice-parser
+    build: ./parser
+    depends_on:
+      - db
+    networks:
+      - weather-network
+    restart: unless-stopped
+
+  api:
+    container_name: mysuperservice-api
+    build: ./api
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./logs:/app/logs
+    depends_on:
+      - db
+      - parser
+    networks:
+      - weather-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  weather-network:
+    driver: bridge
