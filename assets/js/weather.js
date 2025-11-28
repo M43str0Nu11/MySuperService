@@ -95,7 +95,7 @@ async function triggerParser() {
         showNotification(`Ошибка: ${error.message}`, 'error');
     } finally {
         btn.disabled = false;
-        btn.textContent = 'Обновить';
+        btn.textContent = 'Обновить данные';
     }
 }
 

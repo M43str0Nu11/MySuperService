@@ -5,15 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MySuperService</title>
   <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/auth.css">
 </head>
 <body>
   <div class="update-info">
     <span id="last-update">Обновлено: сегодня в 7:00</span>
-    <button id="refresh-btn" class="refresh-btn">Обновить</button>
   </div>
   <div id="notification" class="notification"></div>
   <header class="site-header">
     <span class="header-title">Шапка</span>
+    <div class="auth-buttons">
+      <button class="auth-btn" onclick="openLoginModal()">Войти</button>
+      <button class="auth-btn" onclick="location.href='register.html'">Зарегистрироваться</button>
+    </div>
   </header>
   <main>
     <section class="weather-section">
@@ -65,11 +69,37 @@
           </tr>
         </tbody>
       </table>
+      <div class="refresh-container">
+        <button id="refresh-btn" class="refresh-btn">Обновить данные</button>
+      </div>
     </section>
   </main>
   <footer class="site-footer">
     <span class="footer-title">Подвал</span>
   </footer>
+
+  <div id="login-modal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeLoginModal()">×</button>
+      <h2>Вход</h2>
+      <form id="login-form" class="auth-form">
+        <div class="form-group">
+          <label for="login-email">Логин (почта)</label>
+          <input type="email" id="login-email" required>
+        </div>
+        <div class="form-group">
+          <label for="login-password">Пароль</label>
+          <div class="password-wrapper">
+            <input type="password" id="login-password" required>
+            <span class="eye-icon" onmousedown="showPassword('login-password')" onmouseup="hidePassword('login-password')" onmouseleave="hidePassword('login-password')">👁️</span>
+          </div>
+        </div>
+        <button type="submit" class="auth-btn submit-btn">Войти</button>
+      </form>
+    </div>
+  </div>
+
   <script src="../assets/js/weather.js"></script>
+  <script src="../assets/js/login.js"></script>
 </body>
 </html>

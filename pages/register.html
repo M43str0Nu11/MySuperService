@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Регистрация - MySuperService</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/auth.css">
+</head>
+<body>
+  <div id="notification" class="notification"></div>
+  <header class="site-header">
+    <span class="header-title">MySuperService</span>
+    <div class="auth-buttons">
+      <button class="auth-btn" onclick="location.href='index.html'">На главную</button>
+    </div>
+  </header>
+  <main>
+    <div class="auth-container">
+      <h2>Регистрация</h2>
+      <form id="register-form" class="auth-form">
+        <div class="form-group">
+          <label for="name">Имя</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Почта</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Пароль</label>
+          <div class="password-wrapper">
+            <input type="password" id="password" name="password" required>
+            <span class="eye-icon" onmousedown="showPassword('password')" onmouseup="hidePassword('password')" onmouseleave="hidePassword('password')">👁️</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="confirm-password">Повторите пароль</label>
+          <input type="password" id="confirm-password" name="confirm-password" required>
+        </div>
+        <button type="submit" class="auth-btn submit-btn">Зарегистрироваться</button>
+      </form>
+      <p class="auth-link">Уже есть аккаунт? <a href="index.html">На главную</a></p>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <span class="footer-title">Подвал</span>
+  </footer>
+  <script src="../assets/js/auth.js"></script>
+</body>
+</html>

@@ -55,6 +55,17 @@ services:
       - weather-network
     restart: unless-stopped
 
+  auth:
+    container_name: mysuperservice-auth
+    build: ./auth
+    ports:
+      - "5001:5001"
+    depends_on:
+      - db
+    networks:
+      - weather-network
+    restart: unless-stopped
+
 volumes:
   postgres_data:
 

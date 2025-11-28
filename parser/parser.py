@@ -107,13 +107,23 @@ def should_update():
     hour = datetime.now().hour
     return hour == 7
 
-# Запись в БД
+# Запись в БД (с нормализацией)
 def save_to_db(source, period, temperature):
     conn = get_db_connection()
     cursor = conn.cursor()
+    
+    # Получаем ID источника
+    cursor.execute("SELECT id FROM weather_sources WHERE name = %s", (source,))
+    source_id = cursor.fetchone()[0]
+    
+    # Получаем ID периода
+    cursor.execute("SELECT id FROM weather_periods WHERE name = %s", (period,))
+    period_id = cursor.fetchone()[0]
+    
+    # Записываем данные
     cursor.execute(
-        "INSERT INTO weather_data (source, period, temperature) VALUES (%s, %s, %s)",
-        (source, period, temperature)
+        "INSERT INTO weather_data (source_id, period_id, temperature) VALUES (%s, %s, %s)",
+        (source_id, period_id, temperature)
     )
     conn.commit()
     cursor.close()

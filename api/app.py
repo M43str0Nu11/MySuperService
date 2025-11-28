@@ -33,10 +33,12 @@ def get_weather():
     
     # Данные по источникам
     cursor.execute("""
-        SELECT source, period, ROUND(temperature, 0) as temp 
-        FROM weather_data 
-        WHERE created_at > NOW() - INTERVAL '2 hours'
-        ORDER BY source, CASE period WHEN 'morning' THEN 1 WHEN 'day' THEN 2 WHEN 'evening' THEN 3 END
+        SELECT s.name as source, p.name as period, ROUND(wd.temperature, 0) as temp 
+        FROM weather_data wd
+        JOIN weather_sources s ON wd.source_id = s.id
+        JOIN weather_periods p ON wd.period_id = p.id
+        WHERE wd.created_at > NOW() - INTERVAL '2 hours'
+        ORDER BY s.name, CASE p.name WHEN 'morning' THEN 1 WHEN 'day' THEN 2 WHEN 'evening' THEN 3 END
     """)
     source_data = cursor.fetchall()
     
